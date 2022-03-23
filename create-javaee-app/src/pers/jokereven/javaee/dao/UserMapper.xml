@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--映射文件 争对当前操作的表编写sql语句进行处理-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件根节点 namespace: 命名空间-->
+<mapper namespace="pers.jokereven.javaee.dao.UserMapper">
+    <!--创建查询语句 id: 查询的名字 resultType: 结果的类型-->
+    <select id="count" resultType="int">
+        select count(1) from smbms_user
+    </select>
+
+    <!--查询所有 返回User对象-->
+    <select id="getAll" resultType="pers.jokereven.javaee.entity.User">
+        select * from smbms_user
+    </select>
+
+    <!--模糊查询根据用户名-->
+    <select id="GetUserByUserName" parameterType="java.lang.String" resultType="pers.jokereven.javaee.entity.User">
+        select * from smbms_user where userName like concat('%',#{userName},'%')
+    </select>
+
+    <!--模糊查询通过用户对象-->
+    <resultMap id="UserList" type="pers.jokereven.javaee.entity.User">
+    <!-- property实体类属性 column:表中的字段 -->
+        <result property="id" column="id"></result>
+        <result property="userCode" column="userCode"></result>
+        <result property="userName" column="userName"></result>
+        <result property="userPassword" column="userPassword"></result>
+        <result property="gender" column="gender"></result>
+<!--        <result property="birthday" column=""></result>-->
+<!--        <result property="phone" column=""></result>-->
+<!--        <result property="address" column=""></result>-->
+        <result property="userRole" column="userRole"></result>
+        <!--关联查询-->
+        <result property="userRoleName" column="roleName"></result>
+    </resultMap>
+    <select id="GetUserByUserObject" resultMap="UserList">
+        select u.*, r.roleName from smbms_user u,smbms_role r
+        where userName like concat('%',#{userName},'%')
+        and userRole=#{userRole}
+        and u.userRole = r.id
+    </select>
+    <!--参数为map-->
+    <select id="GetUserByMap" parameterType="java.util.Map" resultType="pers.jokereven.javaee.entity.User">
+        select * from smbms_user where userName like concat('%',#{uName},'%')
+        and userRole=#{uRole}
+    </select>
+
+    <!--添加用户-->
+    <insert id="add" parameterType="pers.jokereven.javaee.entity.User">
+        insert into
+        smbms_user(userCode, userName, userPassword, gender, birthday,
+                   phone, address, userRole, createdBy, creationDate)
+        values(#{userCode}, #{userName}, #{userPassword}, #{gender}, #{birthday},
+               #{phone}, #{address}, #{userRole}, #{createdBy}, #{creationDate})
+    </insert>
+
+    <!-- 修改用户信息 -->
+    <update id="modify" parameterType="pers.jokereven.javaee.entity.User">
+        update smbms_user
+        set usercode=#{userCode}, userName=#{userName}, userPassword=#{userPassword},
+            gender=#{gender}, birthday=#{birthday}, phone=#{phone}, address=#{address},
+            userRole=#{userRole}, modifyBy=#{modifyBy}, modifyDate=#{modifyDate}
+        where id=#{id}
+    </update>
+
+    <update id="updatePwd">
+        update smbms_user set userPassword=#{userPassword}
+        where id=#{id}
+    </update>
+
+    <delete id="deleteUserById" parameterType="java.lang.Integer">
+        delete from smbms_user where id = #{id}
+    </delete>
+</mapper>

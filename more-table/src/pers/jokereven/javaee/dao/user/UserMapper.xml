@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--映射文件 争对当前操作的表编写sql语句进行处理-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--映射文件根节点 namespace: 命名空间-->
+<mapper namespace="pers.jokereven.javaee.dao.user.UserMapper">
+
+<!--    配置缓存 FIFO 先进先出 LRU 最少使用 缓存时间 缓存对象个数 只读-->
+    <cache eviction="FIFO"  flushInterval="60000" size="100" readOnly="true"></cache>
+
+<!--    GetUserRoleListByRoleId-->
+<!--    <resultMap id="UserRoleList" type="pers.jokereven.javaee.entity.User">
+        &lt;!&ndash; property实体类属性 column:表中的字段 &ndash;&gt;
+        <id property="id" column="id"></id>
+        <result property="userCode" column="userCode"></result>
+        <result property="userName" column="userName"></result>
+        <result property="userPassword" column="userPassword"></result>
+        <result property="gender" column="gender"></result>
+        <result property="birthday" column="birthday"></result>
+        <result property="phone" column="phone"></result>
+        <result property="address" column="address"></result>
+        <result property="userRole" column="userRole"></result>
+    &lt;!&ndash;一个User对应多个Role 多对一关系&ndash;&gt;
+        <association property="role" javaType="pers.jokereven.javaee.entity.Role">
+            <id property="id" column="role_id"></id>
+            <result property="roleCode" column="roleCode"></result>
+            <result property="roleName" column="roleName"></result>
+        </association>
+    </resultMap>-->
+
+<!--    User-->
+   <resultMap id="UserRoleList" type="pers.jokereven.javaee.entity.User">
+<!--        property实体类属性 column:表中的字段-->
+        <id property="id" column="id"></id>
+        <result property="userCode" column="userCode"></result>
+        <result property="userName" column="userName"></result>
+        <result property="userPassword" column="userPassword"></result>
+        <result property="gender" column="gender"></result>
+        <result property="birthday" column="birthday"></result>
+        <result property="phone" column="phone"></result>
+        <result property="address" column="address"></result>
+        <result property="userRole" column="userRole"></result>
+<!--       one to one or more to one-->
+       <association property="role" javaType="pers.jokereven.javaee.entity.Role" resultMap="roleList"></association>
+   </resultMap>
+
+<!--    Role-->
+    <resultMap id="roleList" type="pers.jokereven.javaee.entity.Role">
+        <id property="id" column="role_id"></id>
+        <result property="roleCode" column="roleCode"></result>
+        <result property="roleName" column="roleName"></result>
+    </resultMap>
+
+    <select id="GetUserRoleListByRoleId" parameterType="java.lang.Integer" resultMap="UserRoleList">
+        select u.*,r.id as role_id, r.roleCode,r.roleName
+        from smbms_user u,smbms_role r
+        where u.userRole=#{userRole}
+        and u.userRole=r.id
+    </select>
+
+    <resultMap id="UserAddressList" type="pers.jokereven.javaee.entity.User">
+        <id property="id" column="id"></id>
+        <result property="userCode" column="userCode"></result>
+        <result property="userName" column="userName"></result>
+        <result property="userPassword" column="userPassword"></result>
+        <result property="gender" column="gender"></result>
+        <result property="birthday" column="birthday"></result>
+        <result property="phone" column="phone"></result>
+        <result property="address" column="address"></result>
+        <result property="userRole" column="userRole"></result>
+<!--        one to more-->
+        <collection property="addressList" ofType="pers.jokereven.javaee.entity.Address" resultMap="addressResult"/>
+    </resultMap>
+    <resultMap id="addressResult" type="pers.jokereven.javaee.entity.Address">
+        <id property="id" column="address_id"></id>
+        <result property="contact" column="contact"></result>
+        <result property="addressDesc" column="addressDesc"></result>
+        <result property="postCode" column="postCode"></result>
+        <result property="tel" column="tel"></result>
+    </resultMap>
+<!--    get address-->
+<!--    使用配置-->
+    <select useCache="true" id="GetUserAddressByUserId" parameterType="java.lang.Integer" resultMap="UserAddressList">
+        select
+        user.*,address.id as address_id,address.contact,
+        address.addressDesc,address.postCode,address.tel
+        from smbms_user user, smbms_address address
+        where user.id = #{id} and user.id = address.userId
+    </select>
+
+<!--    动态sql-->
+<!--    不确定传入的条件是什么 使用if解决-->
+<!--    <select id="GetUserListByDynamic" resultType="pers.jokereven.javaee.entity.User">
+        select * from smbms_user
+        <where>
+            <if test="userName!=null">
+                userName = #{userName}
+            </if>
+            <if test="userRole!=null">
+                and userRole = #{userRole}
+            </if>
+        </where>
+    </select>-->
+
+<!--    use trim优化-->
+    <select id="GetUserListByDynamic" resultType="pers.jokereven.javaee.entity.User">
+        select * from smbms_user
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="userName!=null">
+                and userName = #{userName}
+            </if>
+            <if test="userRole!=null">
+               and  userRole = #{userRole}
+            </if>
+        </trim>
+    </select>
+
+<!--    update by dynamic sql-->
+    <update id="UpdateUserByDynamicSql" parameterType="pers.jokereven.javaee.entity.User">
+        update smbms_user
+        <trim prefix="set" suffix="where id=#{id}" suffixOverrides=",">
+            <if test="userCode!=null">usercode=#{userCode},</if>
+            <if test="userName!=null">userName=#{userName},</if>
+            <if test="userPassword!=null">userPassword=#{userPassword},</if>
+            <if test="gender!=null">gender=#{gender},</if>
+            <if test="birthday!=null">birthday=#{birthday},</if>
+            <if test="phone!=null">phone=#{phone},</if>
+            <if test="address!=null">address=#{address},</if>
+            <if test="userRole!=null">userRole=#{userRole},</if>
+            <if test="modifyBy!=null">modifyBy=#{modifyBy},</if>
+            <if test="modifyDate!=null">modifyDate=#{modifyDate}</if>
+        </trim>
+    </update>
+
+    <select id="GetUserByDynamicSqlFoEach" resultType="pers.jokereven.javaee.entity.User">
+        select * from smbms_user
+        where userRole in
+        <foreach collection="array" item="roleIds" open="(" separator="," close=")">#{roleIds}</foreach>
+    </select>
+
+    <select id="GetUserByDynamicSqlForEachList" resultType="pers.jokereven.javaee.entity.User">
+        select * from smbms_user
+        where userRole in
+        <foreach collection="list" item="roleList" open="(" separator="," close=")">#{roleList}</foreach>
+    </select>
+
+    <select id="GetUserByDynamicSqlForEachMap" resultType="pers.jokereven.javaee.entity.User">
+        select * from smbms_user
+        where gender=#{gender} and userRole in
+        <foreach collection="roleIds" item="roleMap" open="(" separator="," close=")">#{roleMap}</foreach>
+    </select>
+
+<!--    choose多条件查询 多重if判断-->
+    <select id="GetUserByMoreCondChoose" resultType="pers.jokereven.javaee.entity.User">
+        select * from smbms_user
+        <trim prefix="where" prefixOverrides="and | or">
+            <choose>
+                <when test="userName!=null">and userName=#{userName}</when>
+                <when test="userRole!=null">and userRole=#{userRole}</when>
+                <when test="userCode!=null">and userCode=#{userCode}</when>
+                <otherwise>and year(creationDate) = year(#{creationDate})</otherwise>
+            </choose>
+        </trim>
+    </select>
+</mapper>
