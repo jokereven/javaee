@@ -10,7 +10,7 @@
                http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean id="startSpring" class="pers.jokereven.javaee.entity.StartSpring">
-        <property name="who" ref="">
+        <property name="who">
             <value>joker even</value>
         </property>
     </bean>
