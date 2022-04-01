@@ -13,3 +13,5 @@
 | spring-aop             | [spring完成aop基础案例](https://github.com/jokereven/javaee/tree/main/start-spring/start_aop)            |
 | spring-annotations-ioc | [spring@注释实现ioc](https://github.com/jokereven/javaee/tree/main/start-spring/start-annotations-ioc) |
 | spring-annotations-aop | [spring@注释实现aop](https://github.com/jokereven/javaee/tree/main/start-spring/start-annotations-aop) |
+| test-mybatis           | [mybatis-crud](https://github.com/jokereven/javaee/tree/main/TEST-mybatis)                         |
+| test-spring            | [spring-ioc-aop](https://github.com/jokereven/javaee/tree/main/TEST-spring)                        |
