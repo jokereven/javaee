@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/spring-printer/spring-printer.iml" filepath="$PROJECT_DIR$/spring-printer/spring-printer.iml" />
       <module fileurl="file://$PROJECT_DIR$/start/start.iml" filepath="$PROJECT_DIR$/start/start.iml" />
       <module fileurl="file://$PROJECT_DIR$/start-spring.iml" filepath="$PROJECT_DIR$/start-spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/start_aop/start_aop.iml" filepath="$PROJECT_DIR$/start_aop/start_aop.iml" />
     </modules>
   </component>
 </project>
