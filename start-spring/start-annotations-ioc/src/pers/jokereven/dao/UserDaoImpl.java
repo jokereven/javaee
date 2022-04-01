@@ -1,11 +1,12 @@
 package pers.jokereven.dao;
 
+import org.springframework.stereotype.Repository;
 import pers.jokereven.entity.User;
 
-public class UserDaoImpl implements UserDao{
-
+@Repository
+public class UserDaoImpl implements UserDao {
     @Override
     public void save(User user) {
-        System.out.println("添加用户成功");
+        System.out.println("保存成功");
     }
 }
