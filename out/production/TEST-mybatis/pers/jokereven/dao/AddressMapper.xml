@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--映射文件 争对当前操作的表编写sql语句进行处理-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件根节点 namespace: 命名空间-->
+<mapper namespace="pers.jokereven.dao.AddressMapper">
+    <!--创建查询语句 id: 查询的名字 resultType: 结果的类型-->
+    <select id="count" resultType="int">
+        select count(1) from smbms_address
+    </select>
+
+<!--    模糊查询 address 对象-->
+    <select id="GetAddressByAddressesDesc" parameterType="java.lang.String" resultType="pers.jokereven.entity.Address">
+        select * from smbms_address where AddressDesc like concat('%',#{AddressDesc},'%')
+    </select>
+
+    <!--参数为map-->
+    <select id="GetAddressByMap" parameterType="java.util.Map" resultType="pers.jokereven.entity.Address">
+        select * from smbms_address
+        where addressDesc like concat('%',#{addressDesc},'%')
+        and contact=#{contact}
+    </select>
+
+    <!--添加地址-->
+    <insert id="add" parameterType="pers.jokereven.entity.Address">
+        insert into
+            smbms_address(contact, addressDesc, postCode, tel, createdBy,
+                      creationDate, userId)
+        values(#{contact}, #{addressDesc}, #{postCode}, #{tel}, #{createdBy},
+               #{creationDate}, #{userId})
+    </insert>
+
+<!--   update address-->
+    <update id="updateAddressById">
+        update smbms_address set postCode=#{postCode}
+        where userId=#{userId}
+    </update>
+
+    <delete id="deleteAddressById" parameterType="java.lang.Integer">
+        delete from smbms_address where userId = #{userId}
+    </delete>
+
+    <select id="GeAddressListByDynamic" resultType="pers.jokereven.entity.Address">
+            select * from smbms_address
+            <trim prefix="where" prefixOverrides="and | or">
+                <if test="contact!=null">
+                    and contact = #{contact}
+                </if>
+                <if test="postCode!=null">
+                    and  postCode = #{postCode}
+                </if>
+            </trim>
+        </select>
+</mapper>

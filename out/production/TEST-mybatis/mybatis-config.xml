@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--对xml文件的声明-->
+<!--mybatis配置文件, 设置mybatis的相关信息-->
+<!--声明当前文件为配置文件, 依赖的是mybatis配置约束-->
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--mybatis配置文件的根节点-->
+<configuration>
+    <!--1. 加载数据源信息 (数据源配置文件 database.properties)-->
+    <properties resource="database.properties"/>
+    <!--2.附加设置 配置mybatis日志 使用LOG4J-->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+<!--        开启查询缓存-->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+    <!--3. 配置链接数据库的环境信息-->
+    <environments default="development">
+        <!--数据库环境 id:当前环境的名字-->
+        <environment id="development">
+            <!--配置事务管理员 高数mybatis使用jdbc的方式处理事务 jdbc:java database connected-->
+            <transactionManager type="JDBC"/>
+            <!--dataSource: 当前数据的链接信息 type:数据源类型
+            (POOLED: mybatis自带的数据源 JNDI: Tomcat的数据源)
+            -->
+            <dataSource type="POOLED">
+                <!-- 获取驱动名 -->
+                <property name="driver" value="${driver}"/>
+                <!-- 获取链接地址 -->
+                <property name="url" value="${url}"/>
+                <!-- 获取用户名 -->
+                <property name="username" value="${username}"/>
+                <!-- 获取密码 -->
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="pers/jokereven/dao/AddressMapper.xml"/>
+    </mappers>
+</configuration>
