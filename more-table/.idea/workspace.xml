@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8525538f-de58-4963-85c8-40e271f33774" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/more-table.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../create-javaee-app/create-javaee-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../create-javaee-app/create-javaee-app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../create-javaee-app/zhoujing.log" beforeDir="false" afterPath="$PROJECT_DIR$/../create-javaee-app/zhoujing.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/more-table.iml" beforeDir="false" afterPath="$PROJECT_DIR$/more-table.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zhoujing.log" beforeDir="false" afterPath="$PROJECT_DIR$/zhoujing.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,6 +17,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="27B3FMMVSxpXOmQi0mFGGZw1Buu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -19,9 +27,37 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager">
+    <configuration name="UserTest.TestGetUserRoleListByRoleId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="more-table" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pers.jokereven.javaee.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pers.jokereven.javaee.test" />
+      <option name="MAIN_CLASS_NAME" value="pers.jokereven.javaee.test.UserTest" />
+      <option name="METHOD_NAME" value="TestGetUserRoleListByRoleId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserTest.TestGetUserRoleListByRoleId" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -32,6 +68,7 @@
       <option name="presentableId" value="Default" />
       <updated>1648779574454</updated>
       <workItem from="1648779576081" duration="48000" />
+      <workItem from="1650460612728" duration="103000" />
     </task>
     <servers />
   </component>

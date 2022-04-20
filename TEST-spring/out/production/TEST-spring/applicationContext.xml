@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Spring配置文件的根标签-->
+<!--xmlns:引入文件的路径-->
+<!--xsi:schemaLocation 对应约束文件的路径-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation=
+               "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+               http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--    扫描包中的注解文件-->
+    <!--    context:component-scan 注解扫描-->
+    <!--    base-package 扫描那个包 包path-->
+    <context:component-scan base-package="pers.jokereven.dao,pers.jokereven.service">
+
+    </context:component-scan>
+
+    <!--扫描切面-->
+    <bean class="pers.jokereven.aop.AddressAddAop"></bean>
+    <!--    自动配置-->
+    <aop:aspectj-autoproxy/>
+</beans>
