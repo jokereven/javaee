@@ -20,8 +20,24 @@
 | test-mybatis           | [mybatis-crud](https://github.com/jokereven/javaee/tree/main/TEST-mybatis)                         |
 | test-spring            | [spring-ioc-aop](https://github.com/jokereven/javaee/tree/main/TEST-spring)                        |
 
-###  之前的代码都提交到main分支, 之后把代码放到不同的分支
-
 ### 数据看第一个案例的sql文件
 
 [idea 导包import遇到的坑](https://blog.csdn.net/qq_41269273/article/details/97290056)
+
+## spring-mvc 模板
+
+参考项目: [SpringMVC](https://github.com/Cenyol/SpringMVC/)
+
+### 这里可能涉及到maven的使用具体参考一下文章2333
+
+[maven的下载与安装教程（超详细）](https://blog.csdn.net/u012660464/article/details/114113349)
+
+[IDEA中创建maven项目详细步骤，很清晰](https://blog.csdn.net/u012660464/article/details/114093066)
+
+## 注意
+
+数据库连接的配置需要改一下
+
+运行Code Generator之前需要把 /src/main/resources/db 下的数据插入数据库之后在运行 Code Generator
+
+这里不需要配置tomcat2333
