@@ -21,4 +21,10 @@ public class MybatisPlusApplication {
     public String hello() {
         return "hello, now is: " + new Date().toString();
     }
+
+    @RequestMapping("/welcome")
+    @ResponseBody
+    public String welcome() {
+        return "欢迎来到SpringMVC课堂";
+    }
 }
