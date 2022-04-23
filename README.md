@@ -8,17 +8,17 @@
 
 ### 学习代码
 
-| 案例                     | 案例详解地址                                                                                             |
-|------------------------|----------------------------------------------------------------------------------------------------|
-| create-javaee-app      | [初认mybatis](https://github.com/jokereven/javaee/tree/main/create-javaee-app)                       |
-| more-table             | [mybatis多表联合](https://github.com/jokereven/javaee/tree/main/more-table)                            |
-| spring-hello-world     | [使用spring完成HelloWorld](https://github.com/jokereven/javaee/tree/main/start-spring/start)           |
-| spring-printer         | [spring完成printer打印机](https://github.com/jokereven/javaee/tree/main/start-spring/spring-printer)    |
-| spring-aop             | [spring完成aop基础案例](https://github.com/jokereven/javaee/tree/main/start-spring/start_aop)            |
+|          案例          |                         案例详解地址                         |
+| :--------------------: | :----------------------------------------------------------: |
+|   create-javaee-app    | [初认mybatis](https://github.com/jokereven/javaee/tree/main/create-javaee-app) |
+|       more-table       | [mybatis多表联合](https://github.com/jokereven/javaee/tree/main/more-table) |
+|   spring-hello-world   | [使用spring完成HelloWorld](https://github.com/jokereven/javaee/tree/main/start-spring/start) |
+|     spring-printer     | [spring完成printer打印机](https://github.com/jokereven/javaee/tree/main/start-spring/spring-printer) |
+|       spring-aop       | [spring完成aop基础案例](https://github.com/jokereven/javaee/tree/main/start-spring/start_aop) |
 | spring-annotations-ioc | [spring@注释实现ioc](https://github.com/jokereven/javaee/tree/main/start-spring/start-annotations-ioc) |
 | spring-annotations-aop | [spring@注释实现aop](https://github.com/jokereven/javaee/tree/main/start-spring/start-annotations-aop) |
-| test-mybatis           | [mybatis-crud](https://github.com/jokereven/javaee/tree/main/TEST-mybatis)                         |
-| test-spring            | [spring-ioc-aop](https://github.com/jokereven/javaee/tree/main/TEST-spring)                        |
+|      test-mybatis      | [mybatis-crud](https://github.com/jokereven/javaee/tree/main/TEST-mybatis) |
+|      test-spring       | [spring-ioc-aop](https://github.com/jokereven/javaee/tree/main/TEST-spring) |
 
 ### 数据看第一个案例的sql文件
 
@@ -41,3 +41,10 @@
 运行Code Generator之前需要把 /src/main/resources/db 下的数据插入数据库之后在运行 Code Generator
 
 这里不需要配置tomcat2333
+
+|         案例         |                         案例详细地址                         |
+| :------------------: | :----------------------------------------------------------: |
+| create-springmvc-app | [springmvc(diy)](https://github.com/jokereven/javaee/tree/main/create-springmvc-app) |
+|   spring-mvc-mini    | [spring-mvc(最小模板)](https://github.com/jokereven/javaee/tree/main/spring-mvc-mini) |
+|      更新中...       |                             ...                              |
+
