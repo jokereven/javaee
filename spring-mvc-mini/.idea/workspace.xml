@@ -10,10 +10,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d781e7cc-585c-48d2-b551-fb6052869544" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/LR/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/LR/RegisterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controller/HelloController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller/HelloController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/classes/Controller/HelloController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/classes/Controller/HelloController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/IndexController/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IndexController/IndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controller/HelloController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/IndexController/IndexController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/log4j2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini.war" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/applicationContext.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/classes/Controller/HelloController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/classes/IndexController/IndexController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/classes/Log/LogController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/classes/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/classes/log4j2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/dispatcher-servlet.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/commons-logging-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/javax.servlet-api-3.1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/log4j-1.2.16.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/log4j-api-2.10.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/log4j-core-2.10.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/log4j-web-2.9.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/slf4j-api-1.7.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/slf4j-log4j12-1.7.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/spring-aop-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/spring-beans-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/spring-context-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/spring-core-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/spring-expression-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/spring-test-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/spring-web-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/lib/spring-webmvc-4.3.13.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/jsp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/jsp/main.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/welcome.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,10 +65,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="spring-beans.schema" />
-        <option value="Class" />
-        <option value="jsf" />
-        <option value="Jsp File" />
         <option value="HTML File" />
+        <option value="jsf" />
+        <option value="AnnotationType" />
+        <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -61,6 +103,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="MavenRunner">
+    <option name="delegateBuildToMaven" value="true" />
+  </component>
   <component name="ProjectId" id="28BdHTEqfwv4xNgfadkHOdk8jzl" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -76,12 +121,17 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../create-springmvc-app" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Facet" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.37356323" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.runner" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="IndexController" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\javaee\javaee\spring-mvc-mini\src\main\webapp" />
     </key>
@@ -193,6 +243,8 @@
       <workItem from="1650693832681" duration="2047000" />
       <workItem from="1651023501447" duration="1514000" />
       <workItem from="1651192122017" duration="3659000" />
+      <workItem from="1651218091967" duration="5134000" />
+      <workItem from="1651223381151" duration="1495000" />
     </task>
     <servers />
   </component>

@@ -5,9 +5,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-
     <!--添加扫描-->
     <context:component-scan base-package="Controller" />
+    <context:component-scan base-package="IndexController" />
+    <context:component-scan base-package="LR" />
 
     <!--指定视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
