@@ -1,3 +1,4 @@
+entity\User.class
 Controller\HelloController.class
 LR\RegisterController.class
 LR\LoginController.class
