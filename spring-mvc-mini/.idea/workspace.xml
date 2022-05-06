@@ -9,13 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d781e7cc-585c-48d2-b551-fb6052869544" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/IndexController/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IndexController/IndexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/IndexController/IndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/IndexController/IndexController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/spring-mvc-mini.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/classes/IndexController/IndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/classes/IndexController/IndexController.class" afterDir="false" />
-    </list>
+    <list default="true" id="d781e7cc-585c-48d2-b551-fb6052869544" name="变更" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

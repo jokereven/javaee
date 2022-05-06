@@ -42,9 +42,15 @@
 
 这里不需要配置tomcat2333
 
-|         案例         |                         案例详细地址                         |
-| :------------------: | :----------------------------------------------------------: |
-| create-springmvc-app | [springmvc(diy)](https://github.com/jokereven/javaee/tree/main/create-springmvc-app) |
-|   spring-mvc-mini    | [spring-mvc(最小模板)](https://github.com/jokereven/javaee/tree/main/spring-mvc-mini) |
-|      更新中...       |                             ...                              |
+|         案例          |                         案例详细地址                         |
+| :-------------------: | :----------------------------------------------------------: |
+| create-springmvc-app  | [springmvc(diy)](https://github.com/jokereven/javaee/tree/main/create-springmvc-app) |
+|    spring-mvc-mini    | [spring-mvc(最小模板)](https://github.com/jokereven/javaee/tree/main/spring-mvc-mini)添加了一些demo |
+| java-check-code-style | [阿里代码规范](https://github.com/jokereven/javaee/tree/main/java-check-code-style) |
+|       更新中...       |                             ...                              |
 
+
+
+## 可能遇到的问题
+
+[idea创建maven+springMVC项目](https://blog.code520.com.cn/posts/17835.html)
