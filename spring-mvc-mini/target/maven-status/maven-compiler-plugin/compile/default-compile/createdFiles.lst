@@ -1,5 +1,6 @@
 entity\User.class
-Controller\HelloController.class
 LR\RegisterController.class
 LR\LoginController.class
 IndexController\IndexController.class
+Controller\HelloController.class
+entity\U.class

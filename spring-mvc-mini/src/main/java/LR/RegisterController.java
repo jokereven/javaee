@@ -1,8 +1,10 @@
 package LR;
 
+import entity.U;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,15 +28,38 @@ public class RegisterController {
     Logger logger = LogManager.getLogger(LoginController.class);
     private Object account;
     private Object password;
+    private Object tenantid;
 
     @RequestMapping(value = "/register")
-    @ResponseBody
-    public String RequiredMethodPost(
-            @RequestParam(value = "account",required = false) String account ,
-            @RequestParam(value = "password",required = false) String password)
+    public String RequiredMethodLR(
+            @RequestParam(value = "name",required = true) String name ,
+            @RequestParam(value = "password",required = true) String password,
+            @RequestParam(value = "tenantid",required = false) String tenantid,
+            Model model)
     {
-        logger.debug("用户名"+account+"密码"+password);
-        return "用户名"+account+"密码"+password;
+
+        // if验证
+        if (name.equals("testaccount") & password.equals("888888")){
+            logger.debug("欢迎testaccount登陆成功，您的租户号为00000");
+
+            U u = new U();
+            u.setName(name);
+            u.setPassword(password);
+            u.setTenantid(tenantid);
+            model.addAttribute(u);
+
+            return "welcome";
+        }else{
+            logger.debug("对不起，用户名密码不正确，需要重新登录！");
+
+
+            U u = new U();
+            u.setName(name);
+            u.setPassword(password);
+            u.setTenantid(tenantid);
+            model.addAttribute(u);
+            return "fail";
+        }
     }
     //    public ModelAndView register(){
 //        ModelAndView mav=new ModelAndView("register");
