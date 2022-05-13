@@ -10,18 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d781e7cc-585c-48d2-b551-fb6052869544" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/entity/U.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/fail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/welcome.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ssm/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ssm/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ssm/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ssm/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ssm/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ssm/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ssm/src/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/LR/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LR/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/LR/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/LR/RegisterController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/spring-mvc-mini.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/classes/LR/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/spring-mvc-mini/WEB-INF/classes/LR/RegisterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +91,7 @@
     <property name="project.structure.last.edited" value="Facet" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.37356323" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="settings.editor.selected.configurable" value="spring" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -219,7 +217,10 @@
       <workItem from="1651646218486" duration="4337000" />
       <workItem from="1651737402044" duration="2261000" />
       <workItem from="1651970849984" duration="342000" />
-      <workItem from="1651997492846" duration="3625000" />
+      <workItem from="1651997492846" duration="3737000" />
+      <workItem from="1652229089609" duration="4823000" />
+      <workItem from="1652236952666" duration="556000" />
+      <workItem from="1652401142733" duration="284000" />
     </task>
     <servers />
   </component>

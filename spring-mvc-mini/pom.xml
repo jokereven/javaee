@@ -11,7 +11,7 @@
 
   <name>spring-mvc-mini Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>https://www.jokereven.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,12 +31,29 @@
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>3.1.0</version>
+      <!--在部署时不使用 scope-->
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
       <version>4.3.13.RELEASE</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>4.3.13.RELEASE</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>4.3.13.RELEASE</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -51,10 +68,82 @@
       <version>4.3.13.RELEASE</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>4.3.13.RELEASE</version>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.4.6</version>
+    </dependency>
+
+<!--    spring整合mybatis-->
+    <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>1.3.2</version>
+    </dependency>
+
+<!--    数据库连接池驱动-->
+    <!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.9.5.2</version>
+    </dependency>
+
+<!--    mysql-->
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.24</version>
+    </dependency>
+
+<!--    jstl-->
+    <!-- https://mvnrepository.com/artifact/jstl/jstl -->
+    <dependency>
+      <groupId>jstl</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>6.2.0.Final</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/javax.servlet/jsp-api -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+<!--    mybatis逆像工程(代码生成器)-->
+    <!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
+    <dependency>
+      <groupId>org.mybatis.generator</groupId>
+      <artifactId>mybatis-generator-core</artifactId>
+      <version>1.3.7</version>
+    </dependency>
+
+<!--PageHelper分页插件-->
+    <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>5.1.2</version>
+    </dependency>
+
+<!--jackson(数据绑定)-->
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.9.8</version>
     </dependency>
 
     <dependency>
@@ -112,4 +201,5 @@
       </plugins>
     </pluginManagement>
   </build>
+
 </project>
