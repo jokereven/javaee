@@ -3,10 +3,9 @@ package github.com.jokereven.dao;
 import github.com.jokereven.entity.Applicant;
 import github.com.jokereven.entity.ApplicantExample;
 import java.util.List;
-
-import github.com.jokereven.entity.ProjectInfo;
-import github.com.jokereven.entity.ProjectInfoExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 public interface ApplicantMapper {
     /**
@@ -14,7 +13,6 @@ public interface ApplicantMapper {
      * This method corresponds to the database table applicant
      *
      * @mbg.generated
-     * 统计 Example 数量
      */
     long countByExample(ApplicantExample example);
 
@@ -23,7 +21,6 @@ public interface ApplicantMapper {
      * This method corresponds to the database table applicant
      *
      * @mbg.generated
-     * 根据条件删除
      */
     int deleteByExample(ApplicantExample example);
 
@@ -32,7 +29,6 @@ public interface ApplicantMapper {
      * This method corresponds to the database table applicant
      *
      * @mbg.generated
-     * 根据主键删除
      */
     int deleteByPrimaryKey(Integer acId);
 
@@ -41,7 +37,6 @@ public interface ApplicantMapper {
      * This method corresponds to the database table applicant
      *
      * @mbg.generated
-     * 插入
      */
     int insert(Applicant record);
 
@@ -50,7 +45,6 @@ public interface ApplicantMapper {
      * This method corresponds to the database table applicant
      *
      * @mbg.generated
-     * 选择性插入
      */
     int insertSelective(Applicant record);
 
@@ -59,7 +53,6 @@ public interface ApplicantMapper {
      * This method corresponds to the database table applicant
      *
      * @mbg.generated
-     * 通过条件查询
      */
     List<Applicant> selectByExample(ApplicantExample example);
 
@@ -68,7 +61,6 @@ public interface ApplicantMapper {
      * This method corresponds to the database table applicant
      *
      * @mbg.generated
-     * 通过主键查询
      */
     Applicant selectByPrimaryKey(Integer acId);
 
@@ -77,7 +69,6 @@ public interface ApplicantMapper {
      * This method corresponds to the database table applicant
      *
      * @mbg.generated
-     * 选择性更新
      */
     int updateByExampleSelective(@Param("record") Applicant record, @Param("example") ApplicantExample example);
 
@@ -86,7 +77,6 @@ public interface ApplicantMapper {
      * This method corresponds to the database table applicant
      *
      * @mbg.generated
-     * 通过条件更新
      */
     int updateByExample(@Param("record") Applicant record, @Param("example") ApplicantExample example);
 
@@ -95,7 +85,6 @@ public interface ApplicantMapper {
      * This method corresponds to the database table applicant
      *
      * @mbg.generated
-     * 根据主键有选择的更新
      */
     int updateByPrimaryKeySelective(Applicant record);
 
@@ -104,7 +93,6 @@ public interface ApplicantMapper {
      * This method corresponds to the database table applicant
      *
      * @mbg.generated
-     * 通过键值更新
      */
     int updateByPrimaryKey(Applicant record);
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="OFF" monitorInterval="1800">
     <properties>
-        <property name="LOG_HOME">.webapp/WEB-INF/logs</property>
+        <property name="LOG_HOME">/WEB-INF/logs</property>
         <property name="FILE_NAME">apps</property>
     </properties>
 

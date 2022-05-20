@@ -8,6 +8,8 @@
 
     <!--添加扫描-->
     <context:component-scan base-package="Controller" />
+    <context:component-scan base-package="github.com.jokereven.controller"/>
+
     <context:component-scan base-package="github.com.jokereven" use-default-filters="false">
         <!--only scan github.com.jokerevn annotation Controller-->
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
@@ -16,6 +18,11 @@
     <!--指定视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/view/" />
         <property name="suffix" value=".jsp" />
     </bean>
 

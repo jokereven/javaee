@@ -64,12 +64,12 @@ http://www.springframework.org/schema/task/spring-task.xsd">
 
     <!--配置事务处理方式-->
     <tx:advice id="txAdvice">
-    <tx:attributes>
-    <!-- 所有的方法都是事务方法 -->
-    <tx:method name="*"/>
-    <!-- eg:以get开始的所有的方法 -->
-    <tx:method name="get*" read-only="true"/>
-    </tx:attributes>
+        <tx:attributes>
+            <!-- 所有的方法都是事务方法 -->
+            <tx:method name="*"/>
+            <!-- eg:以get开始的所有的方法 -->
+            <tx:method name="get*" read-only="true"/>
+        </tx:attributes>
     </tx:advice>
 
     <!--通过切点将事务织入-->
@@ -79,5 +79,14 @@ http://www.springframework.org/schema/task/spring-task.xsd">
         <!-- 配置事务增强 -->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
     </aop:config>
+
+    <!-- 配置一个可以批量执行的sqlSession -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <!-- 指定sqlSessionFactory -->
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+        <!-- mybatis默认使用单个更新（即ExecutorType默认为SIMPLE而不是BATCH）
+        SIMPLE:单个模式    BATCH:批量模式   -->
+        <constructor-arg name="executorType" value="BATCH"></constructor-arg>
+    </bean>
 
 </beans>

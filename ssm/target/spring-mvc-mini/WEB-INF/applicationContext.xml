@@ -1,6 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/task
+http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <!-- spring配置文件,主要配置和业务逻辑相关的内容 -->
+    <context:component-scan base-package="github.com.jokereven">
+        <!-- 除了控制器,其他都扫描 -->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--加载数据源信息-->
+    <context:property-placeholder location="classpath:dbconfig.properties"/>
+    <bean id="pooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!-- url地址 -->
+        <property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+        <!-- 驱动 -->
+        <property name="driverClass" value="${jdbc.driverClass}"></property>
+        <!-- 账号 -->
+        <property name="user" value="${jdbc.user}"></property>
+        <!-- 密码 -->
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+    <!--配置mybatis-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 指定mybatis全局配置文件的位置 -->
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+        <!-- 指定数据源的使用 -->
+        <property name="dataSource" ref="pooledDataSource"></property>
+        <!-- 指定mybatis,mapper文件的位置  (类路径下的所有的映射xml文件) -->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+    </bean>
+
+    <!--配置映射文件扫描器,扫描dao包下面的数据-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 扫描所有dao接口的实现,加入到ioc容器 -->
+        <property name="basePackage" value="github.com.jokereven.dao"></property>
+    </bean>
+
+    <!--配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 控制住数据源 -->
+        <property name="dataSource" ref="pooledDataSource"></property>
+    </bean>
+
+    <!--配置事务处理方式-->
+    <tx:advice id="txAdvice">
+        <tx:attributes>
+            <!-- 所有的方法都是事务方法 -->
+            <tx:method name="*"/>
+            <!-- eg:以get开始的所有的方法 -->
+            <tx:method name="get*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--通过切点将事务织入-->
+    <aop:config>
+        <!-- 切入点表达式 -->
+        <aop:pointcut expression="execution(* github.com.jokereven.service..*(..))" id="txPoint"/>
+        <!-- 配置事务增强 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
+    </aop:config>
+
+    <!-- 配置一个可以批量执行的sqlSession -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <!-- 指定sqlSessionFactory -->
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+        <!-- mybatis默认使用单个更新（即ExecutorType默认为SIMPLE而不是BATCH）
+        SIMPLE:单个模式    BATCH:批量模式   -->
+        <constructor-arg name="executorType" value="BATCH"></constructor-arg>
+    </bean>
 
 </beans>

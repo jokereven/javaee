@@ -4,6 +4,8 @@ import github.com.jokereven.entity.ProjectInfo;
 import github.com.jokereven.entity.ProjectInfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 public interface ProjectInfoMapper {
     /**
@@ -93,18 +95,4 @@ public interface ProjectInfoMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(ProjectInfo record);
-
-    /*
-     * 以上都是通过 generated 生成的单表操2333
-     * */
-
-    /**
-     * 根据条件二表联查所有信息
-     * **/
-    List<ProjectInfo> selectProjectInfoByExample(ProjectInfoExample example);
-
-    /**
-     * 根据主键二表联查单个信息
-     * */
-    ProjectInfo selectProjectInfoByPrimaryKey(Integer piId);
 }

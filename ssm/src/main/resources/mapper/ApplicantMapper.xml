@@ -12,7 +12,6 @@
     <result column="ac_sex" jdbcType="INTEGER" property="acSex" />
     <result column="workingLife" jdbcType="INTEGER" property="workinglife" />
   </resultMap>
-
   <sql id="Example_Where_Clause">
     <!--
       WARNING - @mbg.generated
@@ -86,7 +85,6 @@
     -->
     ac_id, ac_name, ac_birthday, ac_sex, workingLife
   </sql>
-<!--selectByExample-->
   <select id="selectByExample" parameterType="github.com.jokereven.entity.ApplicantExample" resultMap="BaseResultMap">
     <!--
       WARNING - @mbg.generated
@@ -105,7 +103,6 @@
       order by ${orderByClause}
     </if>
   </select>
-<!--selectByPrimaryKey-->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--
       WARNING - @mbg.generated
@@ -271,4 +268,6 @@
       workingLife = #{workinglife,jdbcType=INTEGER}
     where ac_id = #{acId,jdbcType=INTEGER}
   </update>
+<!--selectByExample-->
+<!--selectByPrimaryKey-->
 </mapper>
