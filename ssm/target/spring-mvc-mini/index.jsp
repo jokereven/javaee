@@ -42,36 +42,6 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th><input type="checkbox"/></th>
-            <td>1</td>
-            <td>jokereven</td>
-            <td>2005-11-01</td>
-            <td>2025-11-01</td>
-            <td>2</td>
-            <td>jack</td>
-            <td>男</td>
-            <td>4</td>
-            <td>
-                <button type="button" class="btn btn-primary">编辑</button>
-                <button type="button" class="btn btn-danger">删除</button>
-            </td>
-        </tr>
-        <tr>
-            <th><input type="checkbox"/></th>
-            <td>2</td>
-            <td>zhoujing</td>
-            <td>2005-11-01</td>
-            <td>2025-11-01</td>
-            <td>2</td>
-            <td>jack</td>
-            <td>男</td>
-            <td>4</td>
-            <td>
-                <button type="button" class="btn btn-primary">编辑</button>
-                <button type="button" class="btn btn-danger">删除</button>
-            </td>
-        </tr>
         </tbody>
     </table>
 <script>
@@ -111,10 +81,64 @@
                 // 判断状态码    status
                 if (xhr.status == 200) {
                     // console.log(xhr.responseText);
-                    var txt = JSON.parse(xhr.responseText);
-                    console.log(txt);
+                    var data = JSON.parse(xhr.responseText);
+                    console.log(data);
+                    console.log(data.extend.pageInfo.list);
+                    d = data.extend.pageInfo.list;
+                    // create dom element
+                    render_list_dom(d);
                 }
             }
+        }
+    }
+
+    function render_list_dom(d) {
+        // <tr>
+        //     <th><input type="checkbox"/></th>
+        //     <td>1</td>
+        //     <td>jokereven</td>
+        //     <td>2005-11-01</td>
+        //     <td>2025-11-01</td>
+        //     <td>2</td>
+        //     <td>jack</td>
+        //     <td>男</td>
+        //     <td>4</td>
+        //     <td>
+        //         <button type="button" class="btn btn-primary">编辑</button>
+        //         <button type="button" class="btn btn-danger">删除</button>
+        //     </td>
+        // </tr>
+
+        for(var i = 0;i<d.length;i++){
+            var tbody = document.getElementsByTagName("tbody")[0];
+            var father = document.createElement("tr");
+            tbody.appendChild(father);
+
+            var thch = document.createElement("th")
+            var checkbox = document.createElement("input")
+            // set input type === checkbox
+            checkbox.setAttribute("type","checkbox");
+            father.appendChild(thch).appendChild(checkbox);
+
+            var tdpageNum = document.createElement("td");
+            var pageNumtxt = document.createTextNode(d[i].piId);
+            father.appendChild(tdpageNum).appendChild(pageNumtxt);
+
+            var tdpiProjectname = document.createElement("td");
+            var pageSizetxt = document.createTextNode(d[i].piProjectname);
+            father.appendChild(tdpiProjectname).appendChild(pageSizetxt);
+
+            var tdpiStartdate = document.createElement("td");
+            var piStartdatetxt = document.createTextNode(d[i].piStartdate);
+            father.appendChild(tdpiStartdate).appendChild(piStartdatetxt);
+
+            var tdpiEnddate = document.createElement("td");
+            var piEnddatetxt = document.createTextNode(d[i].piEnddate);
+            father.appendChild(tdpiEnddate).appendChild(piEnddatetxt);
+
+            var tdpiStatus = document.createElement("td");
+            var piStatustxt = document.createTextNode(d[i].piStatus);
+            father.appendChild(tdpiStatus).appendChild(piStatustxt);
         }
     }
 </script>

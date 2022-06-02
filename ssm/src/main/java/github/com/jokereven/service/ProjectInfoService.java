@@ -20,6 +20,7 @@ public class ProjectInfoService {
 
     // 查询所有项目
     public List<ProjectInfo> getAll(){
+        System.out.println("use getall()...");
         return projectInfoMapper.selectByExample(null);
     }
 }
