@@ -38,10 +38,17 @@ public class ProjectInfoController {
     @ResponseBody
     public Msg GetAllProjectInfoWithJson(@RequestParam(value="pn",defaultValue = "1") Integer pn){
         System.out.println("ok ok ok ok");
-        PageHelper.startPage(pn,5);
+        PageHelper.startPage(pn,6);
         List<ProjectInfo> infos = projectInfoService.getAll();
+        System.out.println("=====");
+        System.out.println(infos);
+        System.out.println("=====");
         PageInfo page = new PageInfo(infos,5);
+        System.out.println("=====");
+        System.out.println(page);
+        System.out.println("=====");
         System.out.println("get page list to string"+page.getList().toString());
+
         return Msg.success().add("pageInfo",page);
     }
 }
