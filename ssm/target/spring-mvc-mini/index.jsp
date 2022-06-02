@@ -139,6 +139,33 @@
             var tdpiStatus = document.createElement("td");
             var piStatustxt = document.createTextNode(d[i].piStatus);
             father.appendChild(tdpiStatus).appendChild(piStatustxt);
+
+            // 申报人
+            var tdacName = document.createElement("td");
+            var acNametxt = document.createTextNode(d[i].applicant.acName);
+            father.appendChild(tdacName).appendChild(acNametxt)
+
+            var tdacSex = document.createElement("td");
+            var acSextxt = document.createTextNode(d[i].applicant.acSex);
+            father.appendChild(tdacSex).appendChild(acSextxt)
+
+            // workinglife
+            var tdworkinglife = document.createElement("td");
+            var workinglifetxt = document.createTextNode(d[i].applicant.workinglife);
+            father.appendChild(tdworkinglife).appendChild(workinglifetxt)
+
+            // 操作 编辑 and 删除
+            var btnf = document.createElement("td");
+            var editbutton = document.createElement("button");
+            editbutton.className = "btn btn-primary";
+            var edittxt = document.createTextNode("编辑")
+            var delbutton = document.createElement("button");
+            delbutton.className = "btn btn-danger";
+            var deltxt = document.createTextNode("删除")
+            delbutton.value="删除";
+            father.appendChild(btnf);
+            btnf.appendChild(editbutton).appendChild(edittxt);
+            btnf.appendChild(delbutton).appendChild(deltxt);
         }
     }
 </script>

@@ -13,31 +13,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
-/**
- * @author jokereven
- */
-
 @Controller
 public class ProjectInfoController {
 
-    /**
-     * 自动装置
-     * */
-
+    //自动装配业务层组件
     @Autowired
     private ProjectInfoService projectInfoService;
 
     // 请求分页查询页面数据 get all return json data
 
-    @RequestMapping("/3a")
-    public String api(){
-        return "api";
-    }
-
     @RequestMapping("/projectInfos")
     @ResponseBody
     public Msg GetAllProjectInfoWithJson(@RequestParam(value="pn",defaultValue = "1") Integer pn){
-        System.out.println("ok ok ok ok");
         PageHelper.startPage(pn,6);
         List<ProjectInfo> infos = projectInfoService.getAll();
         System.out.println("=====");
@@ -48,7 +35,6 @@ public class ProjectInfoController {
         System.out.println(page);
         System.out.println("=====");
         System.out.println("get page list to string"+page.getList().toString());
-
         return Msg.success().add("pageInfo",page);
     }
 }

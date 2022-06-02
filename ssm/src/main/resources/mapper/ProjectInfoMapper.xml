@@ -19,10 +19,10 @@
     </association>
   </resultMap>
 
-
+  <!--两表联查的内容-->
   <sql id="WithApplicant_Column_List">
-    p.pi_id, p.pi_projectName, p.pi_startDate, p.pi_endDate, p.pi_status, p.acId,
-    a.ac_id, a.ac_name, a.ac_birthday, a.ac_sex, a.ac.workingLife
+    pi_id,p. pi_projectName, p.pi_startDate, p.pi_endDate, p.pi_status, p.acId,
+    a.ac_id,a.ac_name,a.ac_birthday,a.ac_sex,a.workingLife
   </sql>
   <!--根据条件两表联查所有信息-->
   <select id="selectByExampleWithApplicant" parameterType="github.com.jokereven.entity.ProjectInfoExample"
@@ -33,7 +33,7 @@
     </if>
     <include refid="WithApplicant_Column_List" />
     from projectinfo p
-    left join applicant a on p.acId=a.ac_id
+    left join applicant a on  p.acId=a.ac_id
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -41,8 +41,6 @@
       order by ${orderByClause}
     </if>
   </select>
-
-  <!--根据主键两表联查单个信息-->
   <!--根据主键两表联查单个信息-->
   <select id="selectByPrimaryKeyWithApplicant" parameterType="java.lang.Integer"
           resultMap="WithApplicantResultMap">
