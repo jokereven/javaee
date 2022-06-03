@@ -25,7 +25,8 @@ public class ProjectInfoController {
     @RequestMapping("/projectInfos")
     @ResponseBody
     public Msg GetAllProjectInfoWithJson(@RequestParam(value="pn",defaultValue = "1") Integer pn){
-        PageHelper.startPage(pn,6);
+        PageHelper.startPage(pn,5);
+        System.out.println(pn);
         List<ProjectInfo> infos = projectInfoService.getAll();
         System.out.println("=====");
         System.out.println(infos);
