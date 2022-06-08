@@ -18,7 +18,7 @@ public class ApplicantService {
 
     // get all
 
-    public List<Applicant> getAllApplicant(){
+    public List<Applicant> getApplicants(){
         return applicantMapper.selectByExample(null);
     }
 

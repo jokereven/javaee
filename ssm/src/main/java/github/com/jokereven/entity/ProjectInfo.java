@@ -1,12 +1,16 @@
 package github.com.jokereven.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class ProjectInfo {
 
     private Integer piId;// 编号
     private String piProjectname; // 项目名称
+    @DateTimeFormat(pattern="YYYY-mm-dd")
     private Date piStartdate;// 起始时间
+    @DateTimeFormat(pattern="YYYY-mm-dd")
     private Date piEnddate;//结束时间
     private Integer piStatus; // 项目状态 0.已申报  1.审核中 2.已审核
     private Integer acid; //申报人编号  项目和申报人是 ： 多对一的关系

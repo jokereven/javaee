@@ -8,6 +8,7 @@ import github.com.jokereven.utils.Msg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -37,5 +38,12 @@ public class ProjectInfoController {
         System.out.println("=====");
         System.out.println("get page list to string"+page.getList().toString());
         return Msg.success().add("pageInfo",page);
+    }
+
+    @RequestMapping(value = "/projectInfo",method= RequestMethod.POST)
+    @ResponseBody
+    public Msg saveProjectInfo(ProjectInfo projectInfo){
+        projectInfoService.saveProjectInfo(projectInfo);
+        return Msg.success();
     }
 }

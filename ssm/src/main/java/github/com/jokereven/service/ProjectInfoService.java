@@ -23,6 +23,9 @@ public class ProjectInfoService {
     //查询所有项目(两表联查)
 
     //添加项目
+    public void saveProjectInfo(ProjectInfo projectInfo){
+        projectInfoMapper.insertSelective(projectInfo);
+    }
 
     //验证申报的项目是否存在
 

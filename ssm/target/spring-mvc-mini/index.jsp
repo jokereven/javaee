@@ -29,10 +29,78 @@
     </style>
 </head>
 <body>
+
+<!-- Modal -->
+<div class="modal fade" id="projectInfoAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">项目申报</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                        <%--项目名--%>
+                        <div class="form-group">
+                            <label for="ProjectName_add_input" class="col-sm-2 control-label">ProjectName</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="piProjectname" class="form-control"
+                                       id="ProjectName_add_input" placeholder="项目名">
+                            </div>
+                        </div>
+
+                        <%--起始时间--%>
+                        <div class="form-group">
+                            <label for="ProjectName_start_time" class="col-sm-2 control-label">ProjectName</label>
+                            <div class="col-sm-10">
+                                <input type="date" name="piStartdate" class="form-control"
+                                       id="ProjectName_start_time" placeholder="起始时间">
+                            </div>
+                        </div>
+
+                        <%--结束时间--%>
+                        <div class="form-group">
+                            <label for="ProjectName_end_time" class="col-sm-2 control-label">ProjectName</label>
+                            <div class="col-sm-10">
+                                <input type="date" name="piEnddate" class="form-control"
+                                       id="ProjectName_end_time" placeholder="结束时间">
+                            </div>
+                        </div>
+<%--                         申报状态   --%>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Status</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="piStatus">
+                                <option value="0">已申报</option>
+                                <option value="1">审核中</option>
+                                <option value="2">已审核</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                            <%--                         申报人   --%>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Applicant</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="acid">
+                                    </select>
+                                </div>
+                            </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="project_info_save_btn">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
     <table class="table table-hover">
         <thead>
         <button type="button" class="btn btn-danger pull-right">删除</button>
-        <button type="button" class="btn btn-success pull-right">新增</button>
+        <button type="button" class="btn btn-success pull-right" id="project_info_add_btn">新增</button>
         <tr>
             <th><input type="checkbox"/></th>
             <th>项目编号(#)</th>
@@ -193,6 +261,10 @@
         var PanelFootertxt = document.createTextNode("当前第"+d.pageNum+"页, 共"+d.pages+"页, "+"总共"+d.total+"数据");
         PanelFooter.appendChild(PanelFootertxt);
 
+        // 全局参数
+        totalCount = d.pages;
+        currentPage = d.pageNum;
+
         var pagination = $("<ul></ul>").addClass("pagination");
 
         // first page
@@ -247,6 +319,73 @@
         navele.attr("aria-label","Page navigation")
         navele.appendTo("#page_nav_area")
     }
+
+    var project_info_add_btn = document.getElementById("project_info_add_btn");
+    project_info_add_btn.onclick = function (){
+
+        // 清除表单数据
+        clear_add_form("#projectInfoAddModal form");
+
+        // 发送ajax请求, 查询申报人有那些, 并展示在下拉框
+        getApplicants("#projectInfoAddModal select[name=acid]")
+
+        $('#projectInfoAddModal').modal({
+            backdrop:'static'
+        })
+    }
+
+    function getApplicants(ele){
+        $(ele).empty();
+        $.ajax({
+            url:"${app_path}/applicants",
+            type:"GET",
+            success:function (res){
+                console.log(res)
+                $.each(res.extend.applicants,function (){
+                    var optionele = $("<option></option>").append(this.acName).attr("value",this.acId);
+                    optionele.appendTo(ele);
+                })
+            }
+        })
+    }
+
+    function clear_add_form(ele){
+        $(ele)[0].reset();
+        //清空样式
+        //清空提示信息
+    }
+
+    var project_info_save_btn = document.getElementById("project_info_save_btn")
+    project_info_save_btn.onclick = function (){
+        // 数据校验
+        // 保存
+        $.ajax({
+            url: "${app_path}/projectInfo",
+            type: "POST",
+            data: $("#projectInfoAddModal form").serialize(), // 数据序列化
+            success: function (res){
+                if (res.code === 200){
+                    // 关闭状态框
+                    $("#projectInfoAddModal").modal('hide');
+                    // link to last page
+                    to_page(totalCount)
+                }else {
+
+                }
+            }
+        })
+    }
+
+    // 数据校验
+    function validate_add_form(){
+
+    }
+    // 项目是否存在
+    function show_validate_msg(){
+
+    }
+
+
 </script>
 </body>
 </html>
