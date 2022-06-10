@@ -46,6 +46,9 @@
                             <div class="col-sm-10">
                                 <input type="text" name="piProjectname" class="form-control"
                                        id="ProjectName_add_input" placeholder="项目名">
+                                <span id="helpBlock2" class="help-block">
+
+                                </span>
                             </div>
                         </div>
 
@@ -66,7 +69,7 @@
                                        id="ProjectName_end_time" placeholder="结束时间">
                             </div>
                         </div>
-<%--                         申报状态   --%>
+                    <%--  申报状态--%>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Status</label>
                         <div class="col-sm-10">
@@ -79,7 +82,7 @@
                     </div>
 
 
-                            <%--                         申报人   --%>
+                            <%--申报人--%>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Applicant</label>
                                 <div class="col-sm-10">
@@ -102,7 +105,7 @@
         <button type="button" class="btn btn-danger pull-right">删除</button>
         <button type="button" class="btn btn-success pull-right" id="project_info_add_btn">新增</button>
         <tr>
-            <th><input type="checkbox"/></th>
+            <th><input type="checkbox" id="check_all"/></th>
             <th>项目编号(#)</th>
             <th>项目名称</th>
             <th>开始日期</th>
@@ -197,6 +200,7 @@
             var checkbox = document.createElement("input")
             // set input type === checkbox
             checkbox.setAttribute("type","checkbox");
+            checkbox.className = "check_item";
             father.appendChild(thch).appendChild(checkbox);
 
             var tdpageNum = document.createElement("td");
@@ -352,12 +356,22 @@
     function clear_add_form(ele){
         $(ele)[0].reset();
         //清空样式
+        $(ele).find("*").removeClass("has-success has-error")
         //清空提示信息
+        $(ele).find(".help-block").text("");
     }
 
     var project_info_save_btn = document.getElementById("project_info_save_btn")
     project_info_save_btn.onclick = function (){
         // 数据校验
+        if (!validate_add_form()){
+            return false;
+        }
+
+        if ($(this).attr("ajax_validate_projectName") === "error"){
+            return false;
+        }
+
         // 保存
         $.ajax({
             url: "${app_path}/projectInfo",
@@ -370,22 +384,75 @@
                     // link to last page
                     to_page(totalCount)
                 }else {
-
+                    $("#projectInfoAddModal").modal('hide');
+                    alert("save failed error");
                 }
             }
         })
     }
 
+        $("#ProjectName_add_input").change(function (){
+            if (!validate_add_form()) {
+                return false;
+            }
+            // 获取输入的名字
+            var pnameval = this.value;
+
+            $.ajax({
+                url:"${app_path}/checkprojectname",
+                data: "projectName="+pnameval,
+                type:"GET",
+                success: function (res){
+                    if (res.code === 200){
+                        // s
+                        show_validate_msg("#ProjectName_add_input","success","可用 √");
+                        $("#project_info_save_btn").attr("ajax_validate_projectName","success")
+                    }else{
+                        // e
+                        show_validate_msg("#ProjectName_add_input","error",res.extend.validate_msg);
+                        $("#project_info_save_btn").attr("ajax_validate_projectName","error")
+                    }
+                }
+            })
+        })
+
     // 数据校验
     function validate_add_form(){
+        // 校验项目名
 
+        // 获取项目名
+        var pnameval = $("#ProjectName_add_input").val();
+        /*匹配以数字或者字母开头并且位数在2-5位或者2-5位的中文*/
+        var regName =  /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/;
+            if(!regName.test(pnameval)){
+                show_validate_msg("#ProjectName_add_input","error","字母开头，允许5-16字节，允许字母数字下划线 front")
+                return false;
+            }else{
+                show_validate_msg("#ProjectName_add_input","success","输入格式正确 front")
+            }
+            return true;
     }
-    // 项目是否存在
-    function show_validate_msg(){
-
+    // 项目是否正确存在
+    function show_validate_msg(ele,status,msg){
+        $(ele).parent().removeClass("has-error has-success")
+        if (status === "success"){
+            $(ele).parent().addClass("has-success")
+        }else  if (status === "error"){
+            $(ele).parent().addClass("has-error")
+        }
+        // 添加文本
+        $(ele).next().text(msg)
     }
 
+    // all check
+    $("#check_all").click(function (){
+        $(".check_item").prop("checked",$(this).prop("checked"));
+    })
 
+    $(document).on("click",".check_item",function (){
+        var flag = $(".check_item:checked").length == $(".check_item").length
+        $("#check_all").prop("checked",flag)
+    })
 </script>
 </body>
 </html>

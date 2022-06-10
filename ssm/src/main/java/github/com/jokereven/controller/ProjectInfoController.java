@@ -3,6 +3,7 @@ package github.com.jokereven.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import github.com.jokereven.entity.ProjectInfo;
+import github.com.jokereven.entity.ProjectInfoExample;
 import github.com.jokereven.service.ProjectInfoService;
 import github.com.jokereven.utils.Msg;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,23 @@ public class ProjectInfoController {
     public Msg saveProjectInfo(ProjectInfo projectInfo){
         projectInfoService.saveProjectInfo(projectInfo);
         return Msg.success();
+    }
+
+    @RequestMapping("/checkprojectname")
+    @ResponseBody
+    public Msg checkprojectname(@RequestParam("projectName") String projectName){
+        // 判断项目名是否合理
+        String regProjectName = "^[a-zA-Z][a-zA-Z0-9_]{4,15}$";
+        // 判断
+        if(!projectName.matches(regProjectName)){
+            return Msg.fail().add("validate_msg","字母开头，允许5-16字节，允许字母数字下划线 back");
+        }
+        // 执行查询
+         boolean flag = projectInfoService.checkprojectname(projectName);
+        if (flag){
+            return Msg.success();
+        }else {
+            return Msg.fail().add("validate_msg","× 不可以 back");
+        }
     }
 }

@@ -2,6 +2,7 @@ package github.com.jokereven.service;
 
 import github.com.jokereven.dao.ProjectInfoMapper;
 import github.com.jokereven.entity.ProjectInfo;
+import github.com.jokereven.entity.ProjectInfoExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.List;
 public class ProjectInfoService {
 
     @Autowired
-    private ProjectInfoMapper projectInfoMapper;
+    private  ProjectInfoMapper projectInfoMapper;
 
     // 业务操作
 
@@ -28,6 +29,15 @@ public class ProjectInfoService {
     }
 
     //验证申报的项目是否存在
+    public boolean checkprojectname(String projectName){
+        // create select
+        ProjectInfoExample example = new ProjectInfoExample();
+        // get 条件
+        ProjectInfoExample.Criteria criteria = example.createCriteria();
+        criteria.andPiProjectnameEqualTo(projectName);
+        long count = projectInfoMapper.countByExample(example);
+        return count == 0; // no user
+    }
 
     //查询单个项目(两表联查)
 
