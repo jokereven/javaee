@@ -44,7 +44,20 @@ public class ProjectInfoService {
     //修改项目
 
     //删除单个项目
+    public void DeleteProjectInfo(Integer id){
+        projectInfoMapper.deleteByPrimaryKey(id);
+    }
 
     //批量删除项目
+    public void DeleteProjectInfos(List<Integer> ids){
+        // create delete obj
+        ProjectInfoExample example = new ProjectInfoExample();
+        // 得到删除对象的条件
+        ProjectInfoExample.Criteria criteria = example.createCriteria();
+        // 将参数放到条件中
+        criteria.andPiIdIn(ids);
+        // 根据条件删除
+        projectInfoMapper.deleteByExample(example);
+    }
 
 }

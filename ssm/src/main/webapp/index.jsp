@@ -30,6 +30,71 @@
 </head>
 <body>
 
+<div class="modal fade" id="projectInfoUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalUpdateLabel">项目申报</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <%--项目名--%>
+                    <div class="form-group">
+                        <label for="ProjectName_update_static" class="col-sm-2 control-label">ProjectName</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" id="ProjectName_update_static"></p>
+                        </div>
+                    </div>
+
+                    <%--起始时间--%>
+                    <div class="form-group">
+                        <label for="ProjectName_start_update_time" class="col-sm-2 control-label">ProjectName</label>
+                        <div class="col-sm-10">
+                            <input type="date" name="piStartdate" class="form-control"
+                                   id="ProjectName_start_update_time" placeholder="起始时间">
+                        </div>
+                    </div>
+
+                    <%--结束时间--%>
+                    <div class="form-group">
+                        <label for="ProjectName_end_update_time" class="col-sm-2 control-label">ProjectName</label>
+                        <div class="col-sm-10">
+                            <input type="date" name="piEnddate" class="form-control"
+                                   id="ProjectName_end_update_time" placeholder="结束时间">
+                        </div>
+                    </div>
+                    <%--  申报状态--%>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Status</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="piStatus">
+                                <option value="0">已申报</option>
+                                <option value="1">审核中</option>
+                                <option value="2">已审核</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <%--申报人--%>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Applicant</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="acid">
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="project_info_update_btn">更新</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal -->
 <div class="modal fade" id="projectInfoAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -102,7 +167,7 @@
 
     <table class="table table-hover">
         <thead>
-        <button type="button" class="btn btn-danger pull-right">删除</button>
+        <button type="button" id="more_del" class="btn btn-danger pull-right">删除</button>
         <button type="button" class="btn btn-success pull-right" id="project_info_add_btn">新增</button>
         <tr>
             <th><input type="checkbox" id="check_all"/></th>
@@ -201,6 +266,7 @@
             // set input type === checkbox
             checkbox.setAttribute("type","checkbox");
             checkbox.className = "check_item";
+            checkbox.setAttribute("del_id",d[i].piId)
             father.appendChild(thch).appendChild(checkbox);
 
             var tdpageNum = document.createElement("td");
@@ -246,10 +312,12 @@
             // 操作 编辑 and 删除
             var btnf = document.createElement("td");
             var editbutton = document.createElement("button");
-            editbutton.className = "btn btn-primary glyphicon glyphicon-pencil";
+            editbutton.className = "btn btn-primary glyphicon glyphicon-pencil edit-btn";
+            editbutton.setAttribute("edit_id",d[i].piId)
             var edittxt = document.createTextNode("编辑")
             var delbutton = document.createElement("button");
-            delbutton.className = "btn btn-danger glyphicon glyphicon-trash";
+            delbutton.className = "btn btn-danger glyphicon glyphicon-trash del-btn";
+            delbutton.setAttribute("del_id",d[i].piId)
             var deltxt = document.createTextNode("删除")
             delbutton.value="删除";
             father.appendChild(btnf);
@@ -452,6 +520,87 @@
     $(document).on("click",".check_item",function (){
         var flag = $(".check_item:checked").length == $(".check_item").length
         $("#check_all").prop("checked",flag)
+    })
+
+        $(document).on("click",".del-btn",function (){
+            // 单个删除
+            var DelBtn = document.getElementsByClassName("del-btn")
+            for (var i =0; i < DelBtn.length;i++){
+                (function (n){
+                    DelBtn[n].onclick = function (){
+                        // 获取checkbox的状态
+                        CheckObj = DelBtn[n].parentNode.parentNode.children[0].children;
+                        var chesta = CheckObj[0].checked;
+                        // 获取父级的第几个元素
+                        DelObjVal = DelBtn[n].parentNode.parentNode.children[2].innerText
+                        ObjID = DelBtn[n].getAttribute("del_id");
+                        ok = confirm("删除 "+DelObjVal+" 项目")
+                        if (chesta === false){
+                            alert("place check the checkbox")
+                        }else{
+                            if (ok){
+                                $.ajax({
+                                    url:"${app_path}/projectInfo/"+ObjID,
+                                    type:"DELETE",
+                                    success: function (res){
+                                        if (res.code == 200){
+                                            to_page(currentPage)
+                                            // 发送ajax请求成功
+                                        }else{
+                                            // 发送ajax请求失败
+                                        }
+                                    }
+                                })
+                            }else{
+                                console.log("取消删除 "+DelObjVal+" 项目")
+                            }
+                        }
+                    }
+                })(i)
+            }
+        })
+        // 多选删除
+        var DelMoreBtn = document.getElementById("more_del")
+        DelMoreBtn.onclick = function (){
+            // 获取第一个checkbox的状态
+            var check_status = document.getElementById("check_all").checked;
+            var ok = confirm("确认删除选择的全部")
+            if (ok){
+                if (check_status){
+                    // 获取当前页面所以id
+                    var Tbody = document.getElementsByTagName("tbody")[0]
+                    for (var i =0 ;i < Tbody.children.length ;i++){
+                        // 获取到该tr.children[0].children checkbox 状态
+                        var ids
+                        if (Tbody.children[i].children[0].children[0].checked){
+                           ids += "-" + Tbody.children[i].children[0].children[0].getAttribute("del_id");
+                        }
+                    }
+                    $.ajax({
+                        url:"${app_path}/projectInfo/"+ids.slice(10),
+                        type:"DELETE",
+                        success: function (res){
+                            if (res.code == 200){
+                                to_page(currentPage)
+                                // 发送ajax请求成功
+                            }else{
+                                // 发送ajax请求失败
+                            }
+                        }
+                    })
+                    // 执行删除多个
+                }else{
+                    alert("place checkd the more")
+                }
+            }else{
+                console.log("取消删除")
+            }
+        }
+
+    $(document).on("click",".edit-btn",function (){
+        $('#projectInfoUpdateModal').modal({
+            backdrop:'static'
+        })
     })
 </script>
 </body>

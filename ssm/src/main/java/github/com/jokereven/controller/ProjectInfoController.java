@@ -3,16 +3,13 @@ package github.com.jokereven.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import github.com.jokereven.entity.ProjectInfo;
-import github.com.jokereven.entity.ProjectInfoExample;
 import github.com.jokereven.service.ProjectInfoService;
 import github.com.jokereven.utils.Msg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -64,5 +61,28 @@ public class ProjectInfoController {
         }else {
             return Msg.fail().add("validate_msg","× 不可以 back");
         }
+    }
+
+    // 根据id删除
+    @RequestMapping(value = "/projectInfo/{ids}",method = RequestMethod.DELETE)
+    @ResponseBody
+    public Msg deleteProjectByID(@PathVariable("ids") String ids){
+        // 单个 id 5
+        // 多个 id 5-6-7
+        // 判断有没有 -
+        if (ids.contains("-")){// 多个删除
+            // 获取传过来的id list
+            List<Integer> int_ids = new ArrayList<>();
+             String[] str_ids = ids.split("-");
+            for (String str_id : str_ids) {
+                int_ids.add(Integer.valueOf(str_id));
+            }
+            projectInfoService.DeleteProjectInfos(int_ids);
+        }else{// 单个删除
+            // 获取传过来的id
+            Integer id = Integer.valueOf(ids);
+            projectInfoService.DeleteProjectInfo(id);
+        }
+        return Msg.success();
     }
 }
