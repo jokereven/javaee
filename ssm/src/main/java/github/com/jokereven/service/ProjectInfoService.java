@@ -60,4 +60,7 @@ public class ProjectInfoService {
         projectInfoMapper.deleteByExample(example);
     }
 
+    public Object metadataProjectInfos(Integer id){
+        return projectInfoMapper.selectByPrimaryKeyWithApplicant(id);
+    }
 }

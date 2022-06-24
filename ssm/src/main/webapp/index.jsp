@@ -325,6 +325,7 @@
             btnf.appendChild(delbutton).appendChild(deltxt);
         }
     }
+
     function render_footer_dom(data){
         $("#page_info_area").empty();
         $("#page_nav_area").empty();
@@ -517,12 +518,14 @@
         $(".check_item").prop("checked",$(this).prop("checked"));
     })
 
+    // 单个删除
     $(document).on("click",".check_item",function (){
         var flag = $(".check_item:checked").length == $(".check_item").length
         $("#check_all").prop("checked",flag)
     })
 
-        $(document).on("click",".del-btn",function (){
+    // 多选删除
+    $(document).on("click",".del-btn",function (){
             // 单个删除
             var DelBtn = document.getElementsByClassName("del-btn")
             for (var i =0; i < DelBtn.length;i++){
@@ -559,7 +562,6 @@
                 })(i)
             }
         })
-        // 多选删除
         var DelMoreBtn = document.getElementById("more_del")
         DelMoreBtn.onclick = function (){
             // 获取第一个checkbox的状态
@@ -600,6 +602,77 @@
     $(document).on("click",".edit-btn",function (){
         $('#projectInfoUpdateModal').modal({
             backdrop:'static'
+        })
+    })
+
+    // 编辑
+    $(document).on("click",".edit-btn",function (){
+        // 获取编辑btn的id
+        var DeitBtn = document.getElementsByClassName("edit-btn")[0]
+        id = this.getAttribute("edit_id")
+        // 获取数据
+        // 获取select数据
+        getApplicants("#projectInfoUpdateModal select[name=acid]")
+        // 获取年月日
+        // 查询当前id所有的数据
+        // 发送ajax请求
+        $.ajax({
+            url:"${app_path}/metadata/"+id,
+            method:"POST",
+            success: function (res){
+                if (res.code === 200){
+                    console.log(res.extend.applicants)
+                    data = res.extend.applicants;
+                    // 获取dom节点
+                    var form = document.getElementsByClassName("form-horizontal")[0]
+                    // 项目名
+                    var pname = form.children[0].children[1].children[0]
+                    var pnameval = document.createTextNode(data.piProjectname)
+                    pname.append(pnameval)
+                    // 开始时间
+                    // console.log(dateFarmat("yyyy-mm-dd",new Date(data.piStartdate)))
+                    psv = dateFarmat("yyyy-mm-dd",new Date(data.piStartdate))
+                    var ps = form.children[1].children[1].children[0]
+                    // console.log(ps)
+                    // console.log(psv)
+                    // 数据有问题什么鬼
+                    ps.value = psv;
+                    // 结束时间
+                    // console.log(dateFarmat("yyyy-mm-dd",new Date(data.piEnddate)))
+                    pev = dateFarmat("yyyy-mm-dd",new Date(data.piEnddate))
+                    var pe = form.children[2].children[1].children[0]
+                    // console.log(pe)
+                    // console.log(pev)
+                    // 数据有问题什么鬼
+                    pe.value = pev;
+                    // console.log(data.piEnddate)
+                    // 状态
+                    var pstatus = form.children[3].children[1].children[0]
+                    // console.log(data.piStatus)
+                    if(data.piStatus == 0){
+                        pstatus.options[0].selected = true
+                    }else if(data.piStatus == 1){
+                        pstatus.options[1].selected = true
+                    }else if(data.piStatus == 2){
+                        pstatus.options[2].selected = true
+                    }
+                    // 申报状态
+                    // 申报人
+                    // 当 select 中的内容与
+                    // 获取到之前select中的id
+                        var pselect = form.children[4].children[1].children[0]
+                        for(var i=0;i<pselect.children.length;i++){
+                            if(pselect.children.item(i).innerText == data.applicant.acName) {
+                                console.log(i)
+                                // 这里有点问题有时候加载的审核人不对
+                                pselect.options[i].selected = true
+                            }else{
+                                console.log("can't find the item...")
+                            }
+                        }
+                    // console.log(data.applicant.acName)
+                }
+            }
         })
     })
 </script>

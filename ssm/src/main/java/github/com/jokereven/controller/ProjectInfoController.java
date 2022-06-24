@@ -85,4 +85,12 @@ public class ProjectInfoController {
         }
         return Msg.success();
     }
+
+    // 根据id查询所有数据
+    @RequestMapping(value = "/metadata/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg metadata(@PathVariable("id") String id){
+        Object data = projectInfoService.metadataProjectInfos(Integer.valueOf(id));
+        return Msg.success().add("applicants",data);
+    }
 }
