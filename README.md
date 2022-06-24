@@ -51,6 +51,10 @@
 
 ## 结课总结
 
+项目管理系统: [https://github.com/jokereven/javaee/tree/main/ssm](https://github.com/jokereven/javaee/tree/main/ssm)
+
+这里还有一些问题我就不解决了2333，先告一段落。
+
 ## 可能遇到的问题
 
 [idea创建maven+springMVC项目](https://blog.code520.com.cn/posts/17835.html)

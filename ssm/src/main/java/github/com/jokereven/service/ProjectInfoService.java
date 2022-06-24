@@ -63,4 +63,8 @@ public class ProjectInfoService {
     public Object metadataProjectInfos(Integer id){
         return projectInfoMapper.selectByPrimaryKeyWithApplicant(id);
     }
+
+    public void updateProjectInfosbyid(ProjectInfo projectInfo){
+        projectInfoMapper.updateByPrimaryKeySelective(projectInfo);
+    }
 }

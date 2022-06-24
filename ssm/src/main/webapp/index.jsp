@@ -278,11 +278,11 @@
             father.appendChild(tdpiProjectname).appendChild(pageSizetxt);
 
             var tdpiStartdate = document.createElement("td");
-            var piStartdatetxt = document.createTextNode(dateFarmat("yyyy-mm-dd",new Date(d[i].piStartdate)));
+            var piStartdatetxt = document.createTextNode(dateFarmat("yyyy-MM-dd",new Date(d[i].piStartdate)));
             father.appendChild(tdpiStartdate).appendChild(piStartdatetxt);
 
             var tdpiEnddate = document.createElement("td");
-            var piEnddatetxt = document.createTextNode(dateFarmat("yyyy-mm-dd",new Date(d[i].piEnddate)));
+            var piEnddatetxt = document.createTextNode(dateFarmat("yyyy-MM-dd",new Date(d[i].piEnddate)));
             father.appendChild(tdpiEnddate).appendChild(piEnddatetxt);
 
             var tdpiStatus = document.createElement("td");
@@ -440,6 +440,8 @@
         if ($(this).attr("ajax_validate_projectName") === "error"){
             return false;
         }
+
+        console.log($("#projectInfoAddModal form").serialize())
 
         // 保存
         $.ajax({
@@ -627,11 +629,12 @@
                     var form = document.getElementsByClassName("form-horizontal")[0]
                     // 项目名
                     var pname = form.children[0].children[1].children[0]
-                    var pnameval = document.createTextNode(data.piProjectname)
-                    pname.append(pnameval)
+                    pname.innerHTML =  data.piProjectname
+                    // 情况元素，防止叠加.
+                    // pname.innerHTML = "";
                     // 开始时间
-                    // console.log(dateFarmat("yyyy-mm-dd",new Date(data.piStartdate)))
-                    psv = dateFarmat("yyyy-mm-dd",new Date(data.piStartdate))
+                    // console.log(dateFarmat("yyyy-MM-dd",new Date(data.piStartdate)))
+                    psv = dateFarmat("yyyy-MM-dd",new Date(data.piStartdate))
                     var ps = form.children[1].children[1].children[0]
                     // console.log(ps)
                     // console.log(psv)
@@ -639,7 +642,7 @@
                     ps.value = psv;
                     // 结束时间
                     // console.log(dateFarmat("yyyy-mm-dd",new Date(data.piEnddate)))
-                    pev = dateFarmat("yyyy-mm-dd",new Date(data.piEnddate))
+                    pev = dateFarmat("yyyy-MM-dd",new Date(data.piEnddate))
                     var pe = form.children[2].children[1].children[0]
                     // console.log(pe)
                     // console.log(pev)
@@ -666,6 +669,7 @@
                                 console.log(i)
                                 // 这里有点问题有时候加载的审核人不对
                                 pselect.options[i].selected = true
+                                pselect.reset
                             }else{
                                 console.log("can't find the item...")
                             }
@@ -673,6 +677,30 @@
                     // console.log(data.applicant.acName)
                 }
             }
+        })
+
+        // 编辑的更新
+        // 获取编辑更新的 btn
+        $(document).on("click","#project_info_update_btn",function (){
+            // 获取数据发送ajax请求
+            console.log($("#projectInfoUpdateModal form").serialize())
+            $.ajax({
+                url: "${app_path}/UpdateprojectInfo/"+id,
+                type: "PUT",
+                data: $("#projectInfoUpdateModal form").serialize(), // 数据序列化
+                success: function (res){
+                    if (res.code === 200){
+                        // 关闭状态框
+                        $("#projectInfoUpdateModal").modal('hide');
+                        // link to last page
+                        to_page(currentPage)
+                        console.log("ok ok ok")
+                    }else {
+                        $("#projectInfoUpdateModal").modal('hide');
+                        alert("update failed error");
+                    }
+                }
+            })
         })
     })
 </script>

@@ -93,4 +93,12 @@ public class ProjectInfoController {
         Object data = projectInfoService.metadataProjectInfos(Integer.valueOf(id));
         return Msg.success().add("applicants",data);
     }
+
+    // 根据id更新申报信息
+    @RequestMapping(value = "/UpdateprojectInfo/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public Msg updateProjectInfobyID(ProjectInfo projectInfo){
+        projectInfoService.updateProjectInfosbyid(projectInfo);
+        return Msg.success();
+    }
 }
